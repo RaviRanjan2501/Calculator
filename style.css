@@ -1,0 +1,147 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(to right, #00AAFF, #00FF6C);
+}
+
+.calculator {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    position: relative;
+    z-index: 1;
+}
+
+/* Decorative background text */
+.bg-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Cinzel Decorative", Algerian, "Palatino Linotype", "Book Antiqua", serif;
+    font-weight: 700;
+    color: rgba(255,255,255,0.14);
+    font-size: clamp(72px, 20vw, 280px);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transform: translateY(-6%) rotate(-6deg);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    text-shadow: 0 6px 28px rgba(0,0,0,0.28);
+    -webkit-font-smoothing: antialiased;
+    filter: contrast(1.05) saturate(0.95);
+}
+
+@media (max-width: 600px) {
+    .bg-text {
+        color: rgba(255,255,255,0.18);
+        transform: translateY(-4%) rotate(-4deg);
+    }
+}
+
+.calculator > .buttons {
+    display: contents;
+}
+
+.calculator > .buttons > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.calculator > .buttons > button:hover {
+    background-color: rgba(255, 255, 255, .9);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.display {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    position: relative;
+}
+
+.display > *:not(.brand) {
+    position: relative;
+    z-index: 2;
+}
+
+.display .brand {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Cinzel Decorative", Algerian, "Palatino Linotype", "Book Antiqua", serif;
+    font-weight: 700;
+    color: rgba(255,255,255,0.12);
+    font-size: clamp(24px, 8vw, 96px);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    transform: translateY(-18%);
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.35));
+}
+
+.display .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+.display .current-operand {
+    color: white;
+    font-size: 2.5rem;
+}
+
+.display .current-operand.small-font {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .calculator {
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+    }
+
+    .calculator > .buttons > button {
+        font-size: 1.5rem;
+    }
+
+    .display .previous-operand {
+        font-size: 1.2rem;
+    }
+
+    .display .current-operand {
+        font-size: 2rem;
+    }
+
+    .display .current-operand.small-font {
+        font-size: 1.2rem;
+    }
+}
